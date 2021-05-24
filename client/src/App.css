@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&family=Montserrat:wght@100;200;400;600;800&display=swap");
+
+
 .App {
   text-align: center;
 }
@@ -36,3 +39,5 @@
     transform: rotate(360deg);
   }
 }
+
+

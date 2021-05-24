@@ -1,11 +1,16 @@
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
+import {useDispatch} from 'react-redux';
+import { addRecords } from '../actions';
+import { Button } from 'antd';
+import './Chronometer.css';
 
 export const Chronometer = () => {
     const [time, setTime] = useState({ms:0,s:0,m:0,h:0});
     const [status, setStatus] = useState(0);
     const [inter, setInter] = useState();
-    
+  
+
+    const dispatch = useDispatch();
     const start = () => {
         run();
         setStatus(1);
@@ -18,10 +23,13 @@ export const Chronometer = () => {
         setStatus(2);
     }
 
+
     const reset = () =>{
         clearInterval(inter);
         setStatus(0);
-        console.log(time.h + ':'+ time.m +':'+ time.s +':'+ time.ms)
+        dispatch(addRecords({
+            records:time.h + ':'+ time.m +':'+ time.s +':'+ time.ms
+        }))
         setTime({ms:0,s:0,m:0,h:0});
         
     }
@@ -59,18 +67,18 @@ export const Chronometer = () => {
             </div>
             <div>
                 { (status === 0) ?
-                    <div>
-                    <button onClick={start}>Start</button> 
+                    <div className='chronometerButtons'>
+                    <Button onClick={start} type="primary">Start</Button> 
                     </div>:''   
                 }
                 {
                     (status===1) ? 
-                    <div>
-                        <span>
-                            <button onClick={stop}>Stop</button>
+                    <div className='chronometerButtons'>
+                        <span className='chronometerButtons'>
+                            <Button onClick={stop}>Stop</Button>
                         </span>
-                        <span>
-                            <button onClick={reset}>Restart</button>
+                        <span className='chronometerButtons'>
+                            <Button type='primary' danger onClick={reset}>Restart</Button>
                         </span>
                     
                     </div>
@@ -78,12 +86,12 @@ export const Chronometer = () => {
                 }
                  {
                     (status===2) ? 
-                    <div>
-                        <span>
-                            <button onClick={resume}>Resume</button>
+                    <div className='chronometerButtons'>
+                        <span className='chronometerButtons'>
+                            <Button onClick={resume}>Resume</Button>
                         </span>
-                        <span>
-                            <button onClick={reset}>Restart</button>
+                        <span className='chronometerButtons'>
+                            <Button type='primary' danger onClick={reset}>Restart</Button>
                         </span>
                     
                     </div>

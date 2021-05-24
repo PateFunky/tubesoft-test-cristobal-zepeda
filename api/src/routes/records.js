@@ -15,7 +15,7 @@ router.post('/',async (req,res)=>{
            let newRecord =  await Record.create({
             record:records
         })
-        res.send('OK')
+        res.send(newRecord)
     } catch(err){
         console.log(err)
     } 

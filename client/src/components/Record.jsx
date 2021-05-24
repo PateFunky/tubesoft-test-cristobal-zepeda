@@ -1,28 +1,46 @@
 import {Table} from 'antd'
+import {useEffect} from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { getAllRecords } from '../actions';
+import './Record.css';
+
 
 export const Record = () => {
 
+
+    const records = useSelector(state => state.records)
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getAllRecords())
+    },[])
+    
+
+    
+
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'id',
-            key: 'id'
-        },
-        {
-            title:'Records',
+            title:'Lasts Records',
             dataIndex: 'record',
-            key: 'record'
+            key: 'record',
+            align: 'center',
+            width: '0%'
         }
     ]
 
     return (
-        <div>
+        <div className='recordDivP'>
+            <div className='recordDiv'>
               <Table
-                //dataSource={}
+                width='auto'
+                size="small"
+                dataSource={records}
                 columns={columns}
-                pagination={{ position: ['bottomCenter'] }}
+                pagination={{ position: ['bottomCenter'],pageSize: 5 }}
                 rowKey="id"
             />
+            </div>
         </div>
     )
 }

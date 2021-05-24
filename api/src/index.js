@@ -1,9 +1,10 @@
 const app = require('./app')
 const { db } = require('./models/Record')
 
-db.sync({force:false})
+
+db.sync({force:true})
 .then(()=>{
-    const port = 4000;
+    const port = 3001;
     app.listen(port)
     console.log(`Server on port ${port}`);
 })

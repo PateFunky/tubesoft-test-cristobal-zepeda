@@ -1,0 +1,12 @@
+.recordDiv{
+    width: 10%;
+    justify-content: center;
+    align-content: center;
+}
+
+.recordDivP{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
