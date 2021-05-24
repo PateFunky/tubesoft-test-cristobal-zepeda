@@ -20,8 +20,11 @@ router.post('/',async (req,res)=>{
         console.log(err)
     } 
        }
-    
+})
 
+router.get('/', async (req,res)=>{
+    const allRecords= await Record.findAll()
+    res.send(allRecords)
 })
 
 
