@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import { addRecords } from '../actions';
 import { Button } from 'antd';
 import './Chronometer.css';
 
 export const Chronometer = () => {
-    const [time, setTime] = useState({ms:0,s:0,m:0,h:0});
     const [status, setStatus] = useState(0);
+    const [time, setTime] = useState({ms:0,s:0,m:0,h:0});
+    
     const [inter, setInter] = useState();
   
 
@@ -58,7 +59,7 @@ export const Chronometer = () => {
     return (
         <div>
             <div>
-            <h1>
+            <h1 data-testid="prueba">
                 <span>{(time.h >= 10) ? time.h : '0'+time.h}</span>&nbsp;:&nbsp;
                 <span>{(time.m >= 10) ? time.m : '0'+time.m}</span>&nbsp;:&nbsp;
                 <span>{(time.s >= 10) ? time.s : '0'+time.s}</span>&nbsp;:&nbsp;
@@ -91,7 +92,7 @@ export const Chronometer = () => {
                             <Button onClick={resume}>Resume</Button>
                         </span>
                         <span className='chronometerButtons'>
-                            <Button type='primary' danger onClick={reset}>Restart</Button>
+                            <Button name='reset' type='primary' danger onClick={reset}>Restart</Button>
                         </span>
                     
                     </div>
