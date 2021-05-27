@@ -1,6 +1,9 @@
 import { message } from 'antd';
 import axios from 'axios';
 
+
+const baseUrl = process.env.REACT_APP_API_URL; 
+
 export const GET_RECORDS = 'GET_RECORDS'
 export const ADD_RECORD = 'ADD_RECORD'
 
@@ -14,7 +17,7 @@ export const getAllRecords=()=>{
     return async(dispatch)=>{
         try{
             let records = await axios.get(
-                'http://localhost:3001/'
+                `http://${baseUrl}:3001/`
             );
             dispatch(getRecords(records.data))
         }catch(err){
@@ -27,7 +30,7 @@ export const getAllRecords=()=>{
 export const addRecords = (newData)=>{
     return async (dispatch)=>{
         try{
-            let add = await axios.post('http://localhost:3001/',newData)
+            let add = await axios.post(`http://${baseUrl}:3001/`,newData)
             dispatch(addRecord(add.data));
         }catch(err){
             console.log(err)
